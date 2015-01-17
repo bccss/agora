@@ -2,25 +2,28 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
   def postmates_quote
-    # Create a new Postmates client
-    @client = Postmates.new
-
-    # Set basic config variables
-    @client.configure do |config|
-      config.api_key = 'b6e0a0b3-2753-4d71-9dc5-ad21840b5ba9'
-      config.customer_id = 'cus_KAbBFryghx1Yrk'
-    end
-
     from  = "20 McAllister St, San Francisco, CA"
     to    = "101 Market St, San Francisco, CA"
-    quote = @client.quote(pickup_address: from, dropoff_address: to)
-
-    p quote.fee
-    p quote.currency
-    p format = '%m/%d/%Y %I:%M:%S%p'
-    p quote.expires_at.strftime(format)
-    p quote.expired?
+    @quote = $client.quote(pickup_address: from, dropoff_address: to)
   end
+
+  # def postmates_delivery
+  #  package = { 
+  #           manifest: "a box of kittens",
+  #           pickup_name: "The Warehouse",
+  #           pickup_address: "20 McAllister St, San Francisco, CA",
+  #           pickup_phone_number: "555-555-5555",
+  #           pickup_business_name: "Optional Pickup Business Name, Inc.",
+  #           pickup_notes: "Optional note that this is Invoice #123",
+  #           dropoff_name: "Alice",
+  #           dropoff_address: "101 Market St, San Francisco, CA",
+  #           dropoff_phone_number: "415-555-1234",
+  #           dropoff_business_name: "Optional Dropoff Business Name, Inc.",
+  #           dropoff_notes: "Optional note to ring the bell"
+  #           #quote_id: "dqt_K9LFfpSZCdAJsk" # optional
+  #         }
+  #   delivery = @client.create(package)
+  # end
 
   # GET /transactions
   def index

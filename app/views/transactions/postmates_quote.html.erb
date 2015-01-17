@@ -1,0 +1,11 @@
+<h1>Postmates Quote</h1>
+Fee: <%= @quote.fee %> 
+<br>
+Currency: <%= @quote.currency %> 
+<br>
+<% format = '%m/%d/%Y %I:%M:%S%p' %>
+<br>
+Expires at: <%= @quote.expires_at.strftime(format) %> 
+<br>
+Expired? <%= @quote.expired? %> 
+<br>
