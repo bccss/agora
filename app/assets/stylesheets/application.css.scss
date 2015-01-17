@@ -14,3 +14,35 @@
 .grid {
   padding: 2em;
 }
+
+#welcome {
+	height:100%;
+	width:100%;
+	position: absolute;
+	display: table;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-image: url("http://maps.googleapis.com/maps/api/staticmap?center=39.95074,-75.149746&zoom=13&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:road.highway|visibility:off&style=feature:road.arterial|visibility:off&style=feature:transit.station|visibility:off&style=saturation:-81|hue:0x08ff00|lightness:3|gamma:0.2&style=feature:administrative.neighborhood|visibility:off&style=feature:poi|element:labels|visibility:off");
+	background-size: cover;
+
+}
+
+#logo-container {
+	max-width: 100%;
+	margin: auto;
+	display: table-cell;
+	vertical-align: middle;
+	text-align:center;
+	color: white;
+	font-size: 25pt;
+}
+
+#title {
+	font-size: 5em;
+	margin-bottom: 0px;
+}
+
+#search {
+	margin: auto;
+	color: grey;
+}
