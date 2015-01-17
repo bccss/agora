@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :transactions
   end
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'sessions' }
   resources :foods
   resources :transactions
 
