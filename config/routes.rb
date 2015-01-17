@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   root 'welcome#index'
-  get 'transactions/postmate', to: 'transactions#postmates_quote'
+  post 'postmates/quote', to: 'postmates#quote'
+  post 'postmates/delivery', to: 'postmates#delivery'
 
   namespace :api, path: nil, constraints: { subdomain: 'api' },
             defaults: { format: :json } do
