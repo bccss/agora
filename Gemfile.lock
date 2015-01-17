@@ -105,6 +105,9 @@ GEM
     high_voltage (2.2.1)
     highline (1.6.21)
     hike (1.2.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n-tasks (0.7.10)
       activesupport
@@ -129,6 +132,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     neat (1.5.1)
       bourbon (>= 3.1)
       sass (~> 3.2.19)
@@ -268,6 +272,7 @@ DEPENDENCIES
   flutie
   formulaic
   high_voltage
+  httparty
   i18n-tasks
   jquery-rails
   launchy

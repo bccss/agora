@@ -25,6 +25,7 @@ gem "uglifier"
 gem "unicorn"
 gem "devise"
 gem "paperclip", "~> 4.2"
+gem "httparty"
 
 group :development do
   gem "spring"
