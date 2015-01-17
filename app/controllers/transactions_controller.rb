@@ -1,6 +1,11 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
+  # def postmates_quote
+  #   response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
+  #   puts response.body, response.code, response.message, response.headers.inspect
+  # end
+  
   # GET /transactions
   def index
     @transactions = Transaction.all
