@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   resources :foods
   resources :transactions
 
+  namespace :api, path: '', contraints: {subdomain: 'api'}, defaults: {format: :json} do
+    resources :foods
+    resources :transactions
+  end
+
 end
