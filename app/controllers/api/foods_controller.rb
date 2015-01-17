@@ -1,4 +1,9 @@
 class API::FoodsController < ApplicationController
+  # GET /foods
+  def index
+    @foods = Food.all
+    render json: @foods
+  end
 
   # GET /foods/1
   def show
