@@ -1,0 +1,57 @@
+#!/usr/bin/env sh
+
+# Set up Rails app. Run this script immediately after cloning the codebase.
+# https://github.com/thoughtbot/guides/tree/master/protocol
+
+# Exit if any subcommand fails
+set -e
+
+# Set up Ruby dependencies via Bundler
+if ! command -v bundle > /dev/null; then
+  gem install bundler --no-document
+fi
+
+bundle install
+
+# Set up configurable environment variables
+if [ ! -f .env ]; then
+  cp .sample.env .env
+fi
+
+# Set up database and add any development seed data
+bundle exec rake dev:prime
+
+# Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
+mkdir -p .git/safe
+
+# Pick a port for Foreman
+if ! grep -qs 'port' .foreman; then
+  printf 'port: 7000\n' >> .foreman
+fi
+
+# Error out if Foreman is not installed
+if ! command -v foreman > /dev/null; then
+  printf 'Foreman is not installed.\n'
+  printf 'See https://github.com/ddollar/foreman for install instructions.\n'
+  exit 1
+fi
+
+# Set up the staging and production apps.
+if heroku join --app hfm-staging &> /dev/null; then
+  git remote add staging git@heroku.com:hfm-staging.git || true
+  printf 'You are a collaborator on the "hfm-staging" Heroku app
+'
+else
+  printf 'Ask for access to the "hfm-staging" Heroku app
+'
+fi
+
+if heroku join --app hfm-production &> /dev/null; then
+  git remote add production git@heroku.com:hfm-production.git || true
+  printf 'You are a collaborator on the "hfm-production" Heroku app
+'
+else
+  printf 'Ask for access to the "hfm-production" Heroku app
+'
+fi
+
