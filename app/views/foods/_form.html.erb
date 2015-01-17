@@ -1,5 +1,14 @@
 <%= simple_form_for(@food) do |f| %>
   <%= f.error_notification %>
+  <% if @food.errors.any? %>
+    <div id="error-explanation" %>
+      <ul id="error-list">
+        <% @food.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="form-inputs">
     <div class="field">
@@ -14,6 +23,11 @@
       <%= f.label :image %><br>
       <%= f.file_field :image %>
     </div>
+    <div class="field">
+      <%= f.label :seller_location %><br>
+      <%= f.text_field :seller_location %>
+    </div>
+    <%= f.input :seller_id, as: :hidden, input_html: { value: current_user.id } %>
   </div>
 
   <div class="form-actions">

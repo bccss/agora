@@ -1,7 +1,7 @@
 class API::FoodsController < ApplicationController
   # GET /foods
   def index
-    @foods = Food.all
+    @foods = Food.for_sale.all
     render json: @foods
   end
 

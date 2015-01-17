@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /foods
   def index
@@ -53,6 +54,6 @@ class FoodsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def food_params
-      params[:food].permit(:name, :price, :image, :seller_id)
+      params[:food].permit(:name, :price, :image, :seller_id, :seller_location)
     end
 end
