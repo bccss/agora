@@ -26,6 +26,7 @@ gem "unicorn"
 gem "devise"
 gem "paperclip", "~> 4.2"
 gem "httparty"
+gem "postmates"
 
 group :development do
   gem "spring"

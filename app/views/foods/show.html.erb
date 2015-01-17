@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <%= image_tag @food.image.url(:medium) %>
+p @food.image.url
 
 <%= link_to 'Edit', edit_food_path(@food) %> |
 <%= link_to 'Back', foods_path %>

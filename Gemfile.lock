@@ -97,6 +97,10 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
     flutie (2.0.0)
     formulaic (0.1.3)
       activesupport
@@ -133,6 +137,7 @@ GEM
     minitest (5.5.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
     neat (1.5.1)
       bourbon (>= 3.1)
       sass (~> 3.2.19)
@@ -147,6 +152,9 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.18.1)
+    postmates (0.1.0)
+      faraday (>= 0.7, < 0.10)
+      faraday_middleware (>= 0.8, < 0.10)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -281,6 +289,7 @@ DEPENDENCIES
   normalize-rails (~> 3.0.0)
   paperclip (~> 4.2)
   pg
+  postmates
   pry-rails
   rack-timeout
   rails (= 4.1.6)

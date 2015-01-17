@@ -1,11 +1,27 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
-  # def postmates_quote
-  #   response = HTTParty.get('https://api.stackexchange.com/2.2/questions?site=stackoverflow')
-  #   puts response.body, response.code, response.message, response.headers.inspect
-  # end
-  
+  def postmates_quote
+    # Create a new Postmates client
+    @client = Postmates.new
+
+    # Set basic config variables
+    @client.configure do |config|
+      config.api_key = 'b6e0a0b3-2753-4d71-9dc5-ad21840b5ba9'
+      config.customer_id = 'cus_KAbBFryghx1Yrk'
+    end
+
+    from  = "20 McAllister St, San Francisco, CA"
+    to    = "101 Market St, San Francisco, CA"
+    quote = @client.quote(pickup_address: from, dropoff_address: to)
+
+    p quote.fee
+    p quote.currency
+    p format = '%m/%d/%Y %I:%M:%S%p'
+    p quote.expires_at.strftime(format)
+    p quote.expired?
+  end
+
   # GET /transactions
   def index
     @transactions = Transaction.all
