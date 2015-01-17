@@ -24,6 +24,7 @@ gem "title"
 gem "uglifier"
 gem "unicorn"
 gem "devise"
+gem "paperclip", "~> 4.2"
 
 group :development do
   gem "spring"

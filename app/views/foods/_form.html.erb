@@ -2,6 +2,18 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :price %><br>
+      <%= f.text_field :price %>
+    </div>
+    <div class="field">
+      <%= f.label :image %><br>
+      <%= f.file_field :image %>
+    </div>
   </div>
 
   <div class="form-actions">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117080505) do
+ActiveRecord::Schema.define(version: 20150117082526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,11 +35,15 @@ ActiveRecord::Schema.define(version: 20150117080505) do
   create_table "foods", force: true do |t|
     t.string   "name"
     t.float    "price"
-    t.boolean  "for_sale"
+    t.boolean  "for_sale",           default: true
     t.integer  "seller_id"
     t.integer  "buyer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "foods", ["buyer_id"], name: "index_foods_on_buyer_id", using: :btree

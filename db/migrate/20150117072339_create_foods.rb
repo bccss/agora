@@ -3,7 +3,7 @@ class CreateFoods < ActiveRecord::Migration
     create_table :foods do |t|
       t.string :name
       t.float :price
-      t.boolean :for_sale
+      t.boolean :for_sale, default: true
       t.integer :seller_id
       t.integer :buyer_id
 
