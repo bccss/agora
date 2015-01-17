@@ -33,6 +33,7 @@ GEM
       multi_json
     arel (5.0.1.20140414130214)
     awesome_print (1.6.1)
+    bcrypt (3.1.9)
     bourbon (3.2.4)
       sass (~> 3.2)
       thor
@@ -68,6 +69,13 @@ GEM
     delayed_job_active_record (4.0.3)
       activerecord (>= 3.0, < 5.0)
       delayed_job (>= 3.0, < 4.1)
+    devise (3.4.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
@@ -124,6 +132,7 @@ GEM
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     normalize-rails (3.0.1)
+    orm_adapter (0.5.0)
     pg (0.18.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -159,6 +168,8 @@ GEM
     rake (10.4.2)
     recipient_interceptor (0.1.2)
       mail
+    responders (1.1.2)
+      railties (>= 3.2, < 4.2)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -221,6 +232,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    warden (1.2.3)
+      rack (>= 1.0)
     webmock (1.20.4)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -239,6 +252,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   delayed_job_active_record
+  devise
   dotenv-rails
   email_validator
   factory_girl_rails
