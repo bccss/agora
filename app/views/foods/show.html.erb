@@ -148,7 +148,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
           // If courier isn't set yet initialize
           if (!courierMarker) {
             courierMarker = new google.maps.Marker({
-              icon: 'http://www.siliconhillsnews.com/wp-content/uploads/2014/06/Logo-Postmates.png',
+              icon: <%= image_tag "Logo-Postmates-Small.png" %>
               postion: pos,
               map: map,
             });
