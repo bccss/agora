@@ -8,27 +8,25 @@ Price: <%= @food.price %>
 <br>
 Seller Location: <%= @food.seller_location %>
 <br>
-Delivery Cost: <div id="delivery_cost"></div>
-<br>
-<button id="target">
-  Get Delivery Quote
-</button>
+
+Delivery Cost: <span id="delivery_cost"></span>
+<button id="target">Get Delivery Quote</button>
+<br><br>
 
 <%= form_for :transaction, url: transactions_path, method: :post do |f| %>
-  <%= f.text_field :buyer_location %>
+  Current Location: <%= f.text_field :buyer_location %>
   <%= f.hidden_field :food_id, value: @food.id %>
   <%= f.submit %>
 <% end %>
 
-
 <script> 
   $( "#target" ).click(function() {
-    alert( "Handler for .click() called." );
     $.ajax({
       url: "/foods/<%= @food.id %>/quote.json",
       context: document.body
     }).done(function(response) {
       $("#delivery_cost").html(response);
+      $("#target").hide();
     });
   });
 </script>
