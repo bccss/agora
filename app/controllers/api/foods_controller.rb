@@ -16,8 +16,10 @@ class API::FoodsController < ApplicationController
     p @food
 
     if @food.save
+      puts " SUCCESSS "
       render json: { success: true, message: "Food was successfully created.", id: @food.id, url: food_path(@food) }
     else
+      puts "FAILEEEDDD"
       render json: { success: false, message: "Error" }
     end
   end
