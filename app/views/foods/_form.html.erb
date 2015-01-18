@@ -30,7 +30,6 @@
     <%= f.input :seller_id, as: :hidden, input_html: { value: current_user.id } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.submit "Create Item", class: "btn btn-primary" %>
+
 <% end %>

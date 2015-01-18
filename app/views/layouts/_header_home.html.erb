@@ -8,8 +8,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/foods">Buy</a></li>
-        <li><a href="/foods/new">Sell</a></li>
+        <li><a href="/foods" id="buy">Buy</a></li>
+        <li><a href="/foods/new" id="sell">Sell</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -23,3 +23,39 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<style>
+  .navbar {
+    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
+    font-size: 22px;
+    height: 100px;
+  }
+
+  .navbar-default {
+    font-color: #fff;
+  }
+
+  .navbar li {
+    color: #000;
+  }
+
+  .navbar > a {
+    padding: 35px;
+  }
+
+  #buy, #sell {
+    color: white;
+    padding-top: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    color: white;
+    padding-top: 35px;
+    padding-left: 10px;
+    padding-right: 30px;
+  }
+</style>

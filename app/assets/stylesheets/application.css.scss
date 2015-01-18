@@ -6,6 +6,7 @@
 
 body {
   background: whitesmoke;
+  font-family: Cabin;
 }
 
 .right {
@@ -36,13 +37,13 @@ body {
 }
 
 #logo-container{
-	max-width: 100%;
-	margin: auto;
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-	color: white;
-	font-size: 25pt;
+  max-width: 100%;
+  margin: auto;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+  font-size: 25pt;
 }
 
 h1#title {
@@ -60,21 +61,6 @@ h1#title {
   padding: 0 1em 0 1em;
   background: rgba(0, 0, 0, 0.1);
   font-size: 22px;
-}
-
-.navbar {
-   background-color: transparent;
-   background: transparent;
-   border-color: transparent;
-   font-size: 18px;
-}
-
-.navbar-default {
-  font-color: #fff;
-}
-
-.navbar li {
-  color: #000;
 }
 
 /* User sign in and sign forms. */
@@ -126,5 +112,7 @@ h1#title {
 }
 
 .container {
-  padding-top: 4em;
+  padding-top: 8em;
 }
+
+
