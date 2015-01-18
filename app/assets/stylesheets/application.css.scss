@@ -1,8 +1,9 @@
 @charset 'utf-8';
 
-@import 'normalize-rails';
+@import "normalize-rails";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Vast+Shadow);
 
 .money {
   float: right;
@@ -16,14 +17,15 @@
 }
 
 #welcome {
-	height:100%;
-	width:100%;
+	height: 100%;
+	width: 100%;
 	position: absolute;
 	display: table;
 	text-align: center;
 	background-repeat: no-repeat;
-	background-image: url("http://maps.googleapis.com/maps/api/staticmap?center=39.95074,-75.149746&zoom=13&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:road.highway|visibility:off&style=feature:road.arterial|visibility:off&style=feature:transit.station|visibility:off&style=saturation:-81|hue:0x08ff00|lightness:3|gamma:0.2&style=feature:administrative.neighborhood|visibility:off&style=feature:poi|element:labels|visibility:off");
+	background-image: url("http://maps.googleapis.com/maps/api/staticmap?center=39.95074,-75.149746&scale=2&zoom=13&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:road.highway|visibility:off&style=feature:road.arterial|visibility:off&style=feature:transit.station|visibility:off&style=saturation:-81|hue:0x08ff00|lightness:-40|gamma:0.2&style=feature:administrative.neighborhood|visibility:off&style=feature:poi|element:labels|visibility:off");
 	background-size: cover;
+	background-position: center;
 
 }
 
@@ -32,7 +34,7 @@
 	margin: auto;
 	display: table-cell;
 	vertical-align: middle;
-	text-align:center;
+	text-align: center;
 	color: white;
 	font-size: 25pt;
 }
@@ -40,9 +42,16 @@
 #title {
 	font-size: 5em;
 	margin-bottom: 0px;
+	font-family: 'Vast Shadow', cursive;
 }
 
 #search {
 	margin: auto;
-	color: grey;
+	color: white;
+	background: url(http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png) no-repeat scroll 7px 7px;
+	background-size: 30px auto;
+	background-position: right center;
+	padding-left: 5px;
+	border-radius: 9px;
+	border: 2px solid white;
 }
