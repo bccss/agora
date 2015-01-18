@@ -20,7 +20,6 @@ class TransactionsController < ApplicationController
   # POST /transactions
   def create
     food = Food.find(params[:transaction][:food_id])
-    p food.inspect
     seller = food.seller
     buyer = current_user
     @transaction = Transaction.new(food: food, seller: seller, buyer: buyer)
