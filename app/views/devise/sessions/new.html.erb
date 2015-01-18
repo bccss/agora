@@ -1,0 +1,14 @@
+<div class="wrapper">  
+  <div class="border-form-div">
+    <h2>Sign in</h2>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= f.email_field :email, :autofocus => true %>
+      <%= f.password_field :password %>
+      <% if devise_mapping.rememberable? -%>
+        <label class="checkbox"> <%= f.label :remember_me %> Rembmer me </label>
+      <% end -%>
+      <%= f.submit "Sign in" %>
+    <% end %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
