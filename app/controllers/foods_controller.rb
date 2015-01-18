@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
-  before_action :set_food, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  include ApplicationHelper
+  before_action :set_food, only: [:show, :edit, :update, :destroy, :quote]
+  before_action :authenticate_user!, except: [:index, :show, :quote]
 
   # GET /foods
   def index
@@ -9,6 +10,18 @@ class FoodsController < ApplicationController
 
   # GET /foods/1
   def show
+  end
+
+  # GET /foods/1/quote
+  def quote
+    seller_location = @food.seller_location
+    buyer_location = params[:buyer_location]
+
+    buyer_location ="101 Market St, San Francisco, CA"
+    @quote = PostmatesWrapper.quote(seller_location, buyer_location)
+    respond_to do |format|
+      format.json { render json: @quote.fee }
+    end
   end
 
   # GET /foods/new

@@ -1,6 +1,37 @@
 <p id="notice"><%= notice %></p>
 
 <%= image_tag @food.image.url(:medium) %>
+<br>
+Name: <%= @food.name %>
+<br>
+Price: <%= @food.price %>
+<br>
+Seller Location: <%= @food.seller_location %>
+<br>
+Delivery Cost: <div id="delivery_cost"></div>
+<br>
+<button id="target">
+  Get Delivery Quote
+</button>
+
+<%= form_for :transaction, url: transactions_path, method: :post do |f| %>
+  <%= f.text_field :buyer_location %>
+  <%= f.hidden_field :food_id, value: @food.id %>
+  <%= f.submit %>
+<% end %>
+
+
+<script> 
+  $( "#target" ).click(function() {
+    alert( "Handler for .click() called." );
+    $.ajax({
+      url: "/foods/<%= @food.id %>/quote.json",
+      context: document.body
+    }).done(function(response) {
+      $("#delivery_cost").html(response);
+    });
+  });
+</script>
 
 <%= link_to 'Edit', edit_food_path(@food) %> |
 <%= link_to 'Back', foods_path %>
