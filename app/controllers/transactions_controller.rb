@@ -2,11 +2,7 @@ class TransactionsController < ApplicationController
   include ApplicationHelper
 
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
-
-  # GET /transactions
-  def index
-    @transactions = Transaction.all
-  end
+  before_action :authenticate_user!
 
   # GET /transactions/1
   def show
