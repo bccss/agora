@@ -43,6 +43,8 @@ class TransactionsController < ApplicationController
 
     @delivery = PostmatesWrapper.delivery(package)
 
+    @transaction.delivery_id = @delivery.id
+
     if @transaction.save
       redirect_to @transaction, notice: 'Transaction was successfully created.'
     else
