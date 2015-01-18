@@ -15,7 +15,7 @@ class Food < ActiveRecord::Base
   def self.search(search)
     if not search.empty?
       search_condition = "%" + search + "%"
-      where('name ILIKE ?', search_condition)
+      where('name ILIKE ? AND for_sale', search_condition)
     else
       all
     end

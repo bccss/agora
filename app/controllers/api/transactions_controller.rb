@@ -11,8 +11,11 @@ class API::TransactionsController < ApplicationController
     # README: Instead of params[:transaction] like standard controller,
     # This API controller removes the nested hash
     food = Food.find(params[:food_id])
+    food.sell!
     seller = food.seller
     buyer = current_user
+    food.buyer = buyer
+    food.save
     @transaction = Transaction.new(food: food, seller: seller, buyer: buyer)
 
     package = {
