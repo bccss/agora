@@ -17,6 +17,14 @@ class FoodsController < ApplicationController
 
   # GET /foods/1
   def show
+    @food = Food.find(params[:id])
+    if !@food.for_sale
+      if !(current_user == @food.buyer || current_user == @food.seller)
+        render_404
+      else
+        @transaction = @food.postmates_transaction
+      end
+    end
   end
 
   # GET /foods/1/quote
