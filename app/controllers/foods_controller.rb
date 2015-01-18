@@ -16,11 +16,9 @@ class FoodsController < ApplicationController
   def quote
     seller_location = @food.seller_location
     buyer_location = params[:buyer_location]
-
-    buyer_location ="101 Market St, San Francisco, CA"
     @quote = PostmatesWrapper.quote(seller_location, buyer_location)
     respond_to do |format|
-      format.json { render json: @quote.fee }
+      format.json { render json: @quote }
     end
   end
 

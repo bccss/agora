@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  include ApplicationHelper 
+  include ApplicationHelper
 
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
@@ -30,23 +30,23 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(food: food, seller: seller, buyer: buyer)
 
     package = {
-      manifest: "a box of kittens",
-      pickup_name: "The Warehouse",
+      manifest: food.name,
+      pickup_name: "Seller Name",
       pickup_address: food.seller_location,
-      pickup_phone_number: "555-555-5555",
-      pickup_business_name: "Optional Pickup Business Name, Inc.",
-      pickup_notes: "Optional note that this is Invoice #123",
-      dropoff_name: "Alice",
+      pickup_phone_number: "555-123-1234",
+      # pickup_business_name: "",
+      # pickup_notes: "Optional note that this is Invoice #123",
+      dropoff_name: "Buyer Name",
       dropoff_address: params[:transaction][:buyer_location],
-      dropoff_phone_number: "415-555-1234",
-      dropoff_business_name: "Optional Dropoff Business Name, Inc.",
-      dropoff_notes: "Optional note to ring the bell"
-      #quote_id: "dqt_K9LFfpSZCdAJsk" # optional
-      }
-    p package
+      dropoff_phone_number: "555-123-1234",
+      # dropoff_business_name: "Optional Dropoff Business Name, Inc.",
+      # dropoff_notes: "Optional note to ring the bell"
+    }
+    if params[:transaction][:quote_id]
+      package[:quote_id] = params[:transaction][:quote_id]
+    end
 
     @delivery = PostmatesWrapper.delivery(package)
-    p @delivery
 
     if @transaction.save
       redirect_to @transaction, notice: 'Transaction was successfully created.'
@@ -78,6 +78,6 @@ class TransactionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def transaction_params
-      params[:transaction].permit(:food_id, :buyer_location)
+      params[:transaction].permit(:food_id, :buyer_location, :quote_id)
     end
 end
