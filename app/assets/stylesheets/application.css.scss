@@ -5,69 +5,62 @@
 @import "bootstrap";
 
 body {
-    background: whitesmoke;
+  background: whitesmoke;
+  font-family: Cabin;
+}
+
+.right {
+  float: right;
 }
 
 .money {
-  float: right;
   color: green;
   font-weight: bold;
   padding-right: 1em;
 }
 
 .grid {
-    padding-top: 5em;
-    padding-right: 2em;
-    padding-bottom: 2em;
-    padding-left: 2em;
+  padding: 2em;
 }
 
 #hero {
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	display: table;
-	text-align: center;
-	background-repeat: no-repeat;
-	/* background: #006400; */
+  height: 100%;
+    width: 100%;
+    position: absolute;
+    display: table;
+    text-align: center;
+    background-repeat: no-repeat;
+    /* background: #006400; */
     background-image: url(http://maps.googleapis.com/maps/api/staticmap?center=39.9583587,-75.1953934&scale=2&zoom=13&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:road.highway|visibility:off&style=feature:road.arterial|visibility:off&style=feature:transit.station|visibility:off&style=saturation:-81|hue:0x08ff00|lightness:-40|gamma:0.2&style=feature:administrative.neighborhood|visibility:off&style=feature:poi|element:labels|visibility:off&style=element:labels|visibility:off);
-	background-size: cover;
-	background-position: center;
+    background-size: cover;
+    background-position: center;
 }
 
 #logo-container{
-	max-width: 100%;
-	margin: auto;
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-	color: white;
-	font-size: 25pt;
+  max-width: 100%;
+  margin: auto;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+  font-size: 25pt;
 }
 
 h1#title {
-	font-size: 2em;
-	font-family: Cabin;
+  font-size: 2em;
+  font-family: Cabin;
 }
 
 #search {
-	height: 55px;
-	margin: auto;
-	color: white;
-    width: 500px;
-    max-width: 100%;
-    padding: 0 1em 0 1em;
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.navbar {
-   background-color: transparent;
-   background: transparent;
-   border-color: transparent;
-}
-
-.navbar li {
-  color: #000;
+  height: 55px;
+  margin: auto;
+  color: white;
+  width: 500px;
+  text-align: center;
+  max-width: 100%;
+  padding: 0 1em 0 1em;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 22px;
 }
 
 /* User sign in and sign forms. */
@@ -113,3 +106,13 @@ h1#title {
 .form-inputs, .form-actions {
     padding: 20px;
 }
+
+.footer {
+  text-align: center;
+}
+
+.container {
+  padding-top: 8em;
+}
+
+

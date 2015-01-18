@@ -11,7 +11,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
-  <%= render "layouts/header" %>
+  <% if request.env['PATH_INFO'] == "/" %>
+    <%= render "layouts/header_home" %>
+  <% else %>
+    <%= render "layouts/header_other" %>
+  <% end %>
   <!-- render "flashes" -->
   <%= render "javascript" %>
   <%= yield %>

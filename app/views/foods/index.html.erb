@@ -1,15 +1,16 @@
-<h1><%= @foods_title%></h1>
-
-<div class="grid">
-  <div class="row">
-    <% @foods.each do |food| %>
-      <div class="col-md-3">
-        <div class="thumbnail">
-          <%= link_to (image_tag food.image.url(:medium), class: 'image'), food %>
-          <%= food.name %>
-          <span class="money">$<%= food.price %></span>
+<div class="container">
+  <h1 style="padding-left: 30px;">Items For Sale</h1>
+  <div class="grid">
+    <div class="row">
+      <% @foods.each do |food| %>
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <%= link_to (image_tag food.image.url(:medium), class: 'image'), food %>
+            <%= food.name %>
+            <span class="money right">$<%= food.price %></span>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
