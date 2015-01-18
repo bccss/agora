@@ -5,7 +5,14 @@ class FoodsController < ApplicationController
 
   # GET /foods
   def index
-    @foods = Food.for_sale.all
+    if params[:search]
+      # FIXME: This needs to be for_sale scoped
+      @foods = Food.search(params[:search])
+      @foods_title = "Search results for \""+params[:search]+"\""
+    else
+      @foods = Food.for_sale.all
+      @foods_title = "Foods for sale"
+    end
   end
 
   # GET /foods/1

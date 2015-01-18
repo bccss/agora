@@ -25,6 +25,11 @@ body {
 #hero {
 	height: 100%;
 	width: 100%;
+}
+
+#welcome {
+	height:100%;
+	width:100%;
 	position: absolute;
 	display: table;
 	text-align: center;
@@ -33,10 +38,9 @@ body {
     background-image: url(http://maps.googleapis.com/maps/api/staticmap?center=39.9583587,-75.1953934&scale=2&zoom=13&format=png&sensor=false&size=640x480&maptype=roadmap&style=feature:road.highway|visibility:off&style=feature:road.arterial|visibility:off&style=feature:transit.station|visibility:off&style=saturation:-81|hue:0x08ff00|lightness:-40|gamma:0.2&style=feature:administrative.neighborhood|visibility:off&style=feature:poi|element:labels|visibility:off&style=element:labels|visibility:off);
 	background-size: cover;
 	background-position: center;
-
 }
 
-#logo-container {
+#logo-container{
 	max-width: 100%;
 	margin: auto;
 	display: table-cell;
@@ -52,6 +56,7 @@ h1#title {
 }
 
 #search {
+	height: 55px;
 	margin: auto;
 	color: white;
     width: 500px;
@@ -67,8 +72,8 @@ h1#title {
 }
 
 .navbar li {
-  color: #000
- }
+  color: #000;
+}
 
 /* User sign in and sign forms. */
 .border-form-div {
@@ -84,10 +89,12 @@ h1#title {
       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
            box-shadow: 0 1px 2px rgba(0,0,0,.05);
 }
+
 .border-form-div .form-signin-heading,
 .border-form-div .checkbox {
     margin-bottom: 10px;
 }
+
 .border-form-div input[type="text"],
 .border-form-div input[type="email"],
 .border-form-div input[type="password"] {

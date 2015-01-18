@@ -1,9 +1,4 @@
-<% if !user_signed_in? %>
-  <div class="jumbotron">
-    <h1>Your Favorite Foods</h1>
-    <p><%= link_to "Sign Up To Order Food", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
-  </div>
-<% end %>
+<h1><%= @foods_title%></h1>
 
 <div class="grid">
   <div class="row">
