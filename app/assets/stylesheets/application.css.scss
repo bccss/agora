@@ -1,8 +1,9 @@
 @charset 'utf-8';
 
-@import 'normalize-rails';
+@import "normalize-rails";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Vast+Shadow);
 
 .money {
   float: right;
@@ -13,4 +14,44 @@
 
 .grid {
   padding: 2em;
+}
+
+#welcome {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	display: table;
+	text-align: center;
+	background-repeat: no-repeat;
+	background: #006400;
+	background-size: cover;
+	background-position: center;
+
+}
+
+#logo-container {
+	max-width: 100%;
+	margin: auto;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	color: white;
+	font-size: 25pt;
+}
+
+#title {
+	font-size: 5em;
+	margin-bottom: 0px;
+	font-family: 'Vast Shadow', cursive;
+}
+
+#search {
+	margin: auto;
+	color: white;
+	background: url(http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png) no-repeat scroll 7px 7px;
+	background-size: 30px auto;
+	background-position: right center;
+	padding-left: 5px;
+	border-radius: 9px;
+	border: 2px solid white;
 }
