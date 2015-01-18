@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  include ApplicationHelper 
 
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
@@ -22,7 +23,30 @@ class TransactionsController < ApplicationController
 
   # POST /transactions
   def create
-    @transaction = Transaction.new(transaction_params)
+    food = Food.find(params[:transaction][:food_id])
+    p food.inspect
+    seller = food.seller
+    buyer = current_user
+    @transaction = Transaction.new(food: food, seller: seller, buyer: buyer)
+
+    package = {
+      manifest: "a box of kittens",
+      pickup_name: "The Warehouse",
+      pickup_address: food.seller_location,
+      pickup_phone_number: "555-555-5555",
+      pickup_business_name: "Optional Pickup Business Name, Inc.",
+      pickup_notes: "Optional note that this is Invoice #123",
+      dropoff_name: "Alice",
+      dropoff_address: params[:transaction][:buyer_location],
+      dropoff_phone_number: "415-555-1234",
+      dropoff_business_name: "Optional Dropoff Business Name, Inc.",
+      dropoff_notes: "Optional note to ring the bell"
+      #quote_id: "dqt_K9LFfpSZCdAJsk" # optional
+      }
+    p package
+
+    @delivery = PostmatesWrapper.delivery(package)
+    p @delivery
 
     if @transaction.save
       redirect_to @transaction, notice: 'Transaction was successfully created.'
@@ -54,6 +78,6 @@ class TransactionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def transaction_params
-      params[:transaction]
+      params[:transaction].permit(:food_id, :buyer_location)
     end
 end
