@@ -12,9 +12,18 @@ class API::FoodsController < ApplicationController
   def create
     @food = Food.new(food_params)
 
+    filename = generate_temporary_file_name
+    File.open(filename, 'wb') do |f|
+      f.write(Base64.decode64(base_64_encoded_data))
+    end
+
+    @food.image = File.open(filename)
+
     if @food.save
+      File.delete(filename)
       render json: { success: true, message: "Food was successfully created.", id: @food.id, url: food_path(@food) }
     else
+      File.delete(filename)
       render json: { success: false, message: "Error" }
     end
   end
@@ -57,4 +66,13 @@ class API::FoodsController < ApplicationController
   def food_params
     params[:food].permit(:name, :price, :image, :seller_id, :seller_location)
   end
+
+  def generate_temporary_file_name
+    loop do
+      token = SecureRandom.urlsafe_base64(25).tr('lIO0', 'sxyz')
+      filename = "/lib/temp/#{token}.jpg"
+      break filename unless File.exist?(filename)
+    end
+  end
+
 end
