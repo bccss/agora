@@ -116,6 +116,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <%= form_for :transaction, url: transactions_path, method: :post do |f| %>
       Dropoff Location: <%= f.text_field :buyer_location %>
       <%= f.hidden_field :food_id, value: @food.id %>
+      <%= f.hidden_field :quote_id %>
       <%= f.submit %>
     <% end %>
 
@@ -129,14 +130,20 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 </div>
 
-<script> 
+<script>
   $("#target").click(function() {
-    $.ajax({
-      url: "/foods/<%= @food.id %>/quote.json",
-      context: document.body
-    }).done(function(response) {
-      $("#delivery_cost").html(response);
-      $("#target").hide();
-    });
+    var location = document.getElementById('transaction_buyer_location').value;
+    var location_encoded = encodeURI(location);
+    try {
+      $.ajax({
+        url: "/foods/<%= @food.id %>/quote.json?buyer_location=" + location_encoded,
+        context: document.body
+      }).done(function(response) {
+        $("#delivery_cost").html(response.fee);
+        $("#transaction_quote_id").attr('value', response.id);
+      });
+    } catch(err) {
+      $("#delivery_cost").html("Not servicable");
+    }
   });
 </script>
