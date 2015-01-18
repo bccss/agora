@@ -148,7 +148,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
           // If courier isn't set yet initialize
           if (!courierMarker) {
             courierMarker = new google.maps.Marker({
-              icon: <%= image_tag "Logo-Postmates-Small.png" %>
+              icon: "/assets/Logo-Postmates-Small.png",
               postion: pos,
               map: map,
             });
