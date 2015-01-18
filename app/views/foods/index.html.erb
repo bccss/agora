@@ -1,23 +1,20 @@
-<h1>Listing foods</h1>
+<% if !user_signed_in? %>
+  <div class="jumbotron">
+    <h1>Your Favorite Foods</h1>
+    <p><%= link_to "Sign Up To Order Food", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+  </div>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="grid">
+  <div class="row">
     <% @foods.each do |food| %>
-      <tr>
-        <td><%= link_to 'Show', food %></td>
-        <td><%= link_to 'Edit', edit_food_path(food) %></td>
-        <td><%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col-md-3">
+        <div class="thumbnail">
+          <%= link_to (image_tag food.image.url(:medium), class: 'image'), food %>
+          <%= food.name %>
+          <span class="money">$<%= food.price %></span>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Food', new_food_path %>
+  </div>
+</div>

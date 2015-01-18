@@ -27,6 +27,7 @@ gem "devise"
 gem "paperclip", "~> 4.2"
 gem "httparty"
 gem "postmates"
+gem 'bootstrap-sass', '~> 3.3.1'
 
 group :development do
   gem "spring"
