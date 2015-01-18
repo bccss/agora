@@ -1,8 +1,8 @@
 <div id="hero">
 	<div id="logo-container">
     <h1 id="title">Your Open Marketplace</h1>
-		<form method="POST" >
-			<input id="search" type="text" class="form-control" placeholder="I'm looking for..."/>
+		 <form action="/foods" method="get">
+			<%= text_field_tag :search, params[:search], :id => 'search', :placeholder => 'I\'m looking for...' %>
 		</form>
 	</div>
 </div>

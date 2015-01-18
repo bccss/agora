@@ -5,6 +5,15 @@ class Food < ActiveRecord::Base
   
   has_attached_file :image, :styles => { :medium => "300x300>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  
+  def self.search(search)
+    if not search.empty?
+      search_condition = "%" + search + "%"
+      where('name ILIKE ?', search_condition)
+    else
+      all
+    end
+  end
 
   validates :name, presence: true
   # TODO: Javascript verification of valid price format

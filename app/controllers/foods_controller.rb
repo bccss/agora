@@ -5,7 +5,11 @@ class FoodsController < ApplicationController
 
   # GET /foods
   def index
-    @foods = Food.for_sale.all
+    if params[:search]
+      @foods = Food.search(params[:search])
+    else
+      @foods = Food.for_sale.all
+    end
   end
 
   # GET /foods/1
