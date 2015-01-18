@@ -29,7 +29,7 @@ function initialize() {
           draggable: true
       });
 
-      reverse_geocode(pos);
+      reverseGeocode(pos);
     }, function() {
       handleNoGeolocation(true);
     });
@@ -39,7 +39,7 @@ function initialize() {
   }
 }
 
-function reverse_geocode(pos) {
+function reverseGeocode(pos) {
   geocoder.geocode({'latLng': pos}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       console.log(results);
@@ -47,18 +47,22 @@ function reverse_geocode(pos) {
         marker.setPosition(pos)
         google.maps.event.addListener(marker, "dragend", function(e) {
           var pos = marker.getPosition();
-          reverse_geocode(pos);
-          map.panTo(point);
+          reverseGeocode(pos);
+          map.panTo(pos);
         });
         var address = results[0].formatted_address;
         document.getElementById('food_seller_location').value = address;
       } else {
-        alert('No results found');
+        clearLocation();
       }
     } else {
-      alert('Geocoder failed due to: ' + status);
+      clearLocation();
     }
   });
+}
+
+function clearLocation() {
+  document.getElementById('food_seller_location').value = "";
 }
 
 function handleNoGeolocation(errorFlag) {
