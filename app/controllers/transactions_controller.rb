@@ -2,11 +2,7 @@ class TransactionsController < ApplicationController
   include ApplicationHelper
 
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
-
-  # GET /transactions
-  def index
-    @transactions = Transaction.all
-  end
+  before_action :authenticate_user!
 
   # GET /transactions/1
   def show
@@ -24,7 +20,6 @@ class TransactionsController < ApplicationController
   # POST /transactions
   def create
     food = Food.find(params[:transaction][:food_id])
-    p food.inspect
     seller = food.seller
     buyer = current_user
     @transaction = Transaction.new(food: food, seller: seller, buyer: buyer)
