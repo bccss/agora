@@ -47,13 +47,14 @@ class API::FoodsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_food
-      @food = Food.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def food_params
-      params[:food].permit(:name, :price, :image, :seller_id, :seller_location)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_food
+    @food = Food.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def food_params
+    params[:food].permit(:name, :price, :image, :seller_id, :seller_location)
+  end
 end
