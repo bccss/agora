@@ -6,6 +6,22 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1
   def show
+    # PostmatesWrapper.quote
+  end
+
+  # GET /transactions/1/status
+  def status
+    @transaction = Transaction.find(params[:id])
+    if !(current_user == @transaction.seller || current_user == @transaction.buyer)
+      respond_to do |format|
+        format.json { render json: { success: false, message: "Unauthorized" } }
+      end
+    end
+    p @transaction.delivery_id
+    delivery = PostmatesWrapper.retrieve(@transaction.delivery_id)
+    respond_to do |format|
+      format.json { render json: delivery }
+    end
   end
 
   # GET /transactions/new
@@ -19,15 +35,19 @@ class TransactionsController < ApplicationController
 
   # POST /transactions
   def create
-    food = Food.find(params[:transaction][:food_id])
-    seller = food.seller
+    @food = Food.find(params[:transaction][:food_id])
+    # TODO: Food.sell in API as well!!!
+    @food.sell!
+    seller = @food.seller
     buyer = current_user
-    @transaction = Transaction.new(food: food, seller: seller, buyer: buyer)
+    @food.buyer = buyer
+    @food.save
+    @transaction = Transaction.new(food: @food, seller: seller, buyer: buyer)
 
     package = {
-      manifest: food.name,
+      manifest: @food.name,
       pickup_name: "Seller Name",
-      pickup_address: food.seller_location,
+      pickup_address: @food.seller_location,
       pickup_phone_number: "555-123-1234",
       # pickup_business_name: "",
       # pickup_notes: "Optional note that this is Invoice #123",
@@ -43,10 +63,12 @@ class TransactionsController < ApplicationController
 
     @delivery = PostmatesWrapper.delivery(package)
 
+    @transaction.delivery_id = @delivery.id
+
     if @transaction.save
-      redirect_to @transaction, notice: 'Transaction was successfully created.'
+      redirect_to @food, notice: "You've ordered this item!"
     else
-      render :new
+      redirect_to @food, notice: "There was an error processing your purchase"
     end
   end
 
