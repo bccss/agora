@@ -1,3 +1,4 @@
+User.create(:email => 'test@test.test', :password => 'testtest', :password_confirmation => 'testtest')
 User.create(:email => '1@gmail.com', :password => '12345678', :password_confirmation => '12345678')
 User.create(:email => '2@gmail.com', :password => '12345678', :password_confirmation => '12345678')
 User.create(:email => '3@gmail.com', :password => '12345678', :password_confirmation => '12345678')
