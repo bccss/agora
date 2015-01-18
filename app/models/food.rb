@@ -15,4 +15,13 @@ class Food < ActiveRecord::Base
   scope :for_sale, -> { where(for_sale: true) }
   scope :sold, -> { where(for_sale: false) }
 
+  after_create :record_url
+
+  def record_url
+    if self.image_file_name
+      self.image_url = self.image.path
+      self.save!
+    end
+  end
+
 end
