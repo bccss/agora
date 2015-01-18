@@ -10,5 +10,8 @@ module ApplicationHelper
       $client.create(package)
     end
 
+    def self.retrieve(delivery_id)
+      $client.retrieve(delivery_id)
+    end
   end
 end

@@ -69,8 +69,10 @@
             map.panTo(pos);
           });
           var address = results[0].formatted_address;
-          document.getElementById('transaction_buyer_location').value = address;
-          getQuote();
+          if (document.getElementById('transaction_buyer_location')) {
+            document.getElementById('transaction_buyer_location').value = address;
+            getQuote();
+          })
         } else {
           clearLocation();
         }
@@ -100,8 +102,7 @@
     map.setCenter(options.position);
   }
 
-  google.maps.event.addDomListener(window, 'load', initialize);
-  
+
   function getQuote() {
     var location = document.getElementById('transaction_buyer_location').value;
     var location_encoded = encodeURI(location);
@@ -119,6 +120,7 @@
     }
   }
 
+google.maps.event.addDomListener(window, 'load', initialize);
   function getTotal() {
     //$("#total").html("$" + (parseFloat($("#price")[0].innerHTML.substr(1, 9)) + parseFloat($("#price")[0].innerHTML.substr(1, 9))).toFixed(2)) 
     var a = parseFloat($("#price")[0].innerHTML.substr(1, 9))
@@ -130,7 +132,63 @@
   function add_decimal(money) {
     return (parseFloat(money) / 100).toFixed(2)
   }
+<% if @transaction %>
+  $(document).ready(function() {
+    console.log(google);
+    var courierMarker;
+    setInterval(function() {
+      $.ajax({
+        url: "/transactions/<%= @transaction.id %>/status",
+        context: document.body
+      }).done(function(response) {
+        $('#postmates-status').html(response['status']);
+        if (response['status'] === 'pickup' || response['status'] === 'dropoff') {
+          var pos = new google.maps.LatLng(response.courier.location.lat,
+                                           response.courier.location.lng);
+          // If courier isn't set yet initialize
+          if (!courierMarker) {
+            courierMarker = new google.maps.Marker({
+              icon: 'http://www.siliconhillsnews.com/wp-content/uploads/2014/06/Logo-Postmates.png',
+              postion: pos,
+              map: map,
+            });
+          }
+          courierMarker.setPosition(pos);
+        }
+      });
+    }, 2000);
+  });
+<% end %>
+</script>
 
+<div class="row">
+  <div class="col-md-6" id="food-wrapper">
+    <p id="notice"><%= notice %></p>
+
+    <% if @food.for_sale %>
+      <%= image_tag @food.image.url(:medium) %>
+      <p>Name: <%= @food.name %></p>
+      <p>Price: <%= @food.price %></p>
+      <p>Seller Location: <%= @food.seller_location %></p>
+      <p>Delivery Cost: <span id="delivery_cost"></span></p>
+      <button id="target">Get Delivery Quote</button>
+      <br><br>
+
+      <%= form_for :transaction, url: transactions_path, method: :post do |f| %>
+        Dropoff Location: <%= f.text_field :buyer_location %>
+        <%= f.hidden_field :food_id, value: @food.id %>
+        <%= f.hidden_field :quote_id %>
+        <%= f.submit %>
+      <% end %>
+
+      <%= link_to 'Edit', edit_food_path(@food) %> |
+      <%= link_to 'Back', foods_path %>
+    <% else %>
+      <p>Postmates is delivering your item</p>
+      <h1 id="postmates-status"></h1>
+    <% end %>
+  </div>
+  <script>
   </script>
 
   <div class="row">

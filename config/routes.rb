@@ -10,12 +10,21 @@ Rails.application.routes.draw do
         post 'delivery'
       end
     end
-    resources :transactions, except: :index
+    resources :transactions, except: :index do
+      member do
+        get 'show'
+      end
+    end
   end
 
   devise_for :users, controllers: { sessions: 'sessions' }
 
-  resources :transactions, except: :index
+  resources :transactions, except: :index do
+    member do
+      get 'show'
+      get 'status'
+    end
+  end
 
   resources :foods do
     member do
