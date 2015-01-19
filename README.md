@@ -1,5 +1,6 @@
-Hfm
+Agora
 ===
+Your open marketplace.
 
 Getting Started
 ---------------
